@@ -11,6 +11,7 @@ import org.craftedsw.tripservicekata.user.UserTrips;
 public class TripService {
 
 	private final LoggedUserHolder loggedUserHolder = new LoggedUserHolder();
+	private final UserTrips userTrips = new UserTrips();
 
 	public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
 		List<Trip> tripList = new ArrayList<Trip>();
@@ -24,7 +25,6 @@ public class TripService {
 				}
 			}
 			if (isFriend) {
-				UserTrips userTrips = new UserTrips();
 				tripList = userTrips.findTrips(user);
 			}
 			return tripList;
