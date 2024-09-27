@@ -10,11 +10,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 import static java.util.Collections.emptyList;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -59,5 +60,21 @@ class TripServiceTest {
         List<Trip> actual = tripService.getTripsByUser(userParam);
 
         assertIterableEquals(emptyList(), actual);
+    }
+
+    @Test
+    void user_trips_when_user_is_friend_with_logged() {;
+        User loggedIn = new User();
+        when(loggedUserHolder.getLoggedUser()).thenReturn(loggedIn);
+
+        User userParam = new User();
+        userParam.getFriends().add(loggedIn);
+
+        List<Trip> userTripList = Arrays.asList(new Trip(), new Trip());
+        when(userTrips.findTrips(userParam)).thenReturn(userTripList);
+
+        List<Trip> actual = tripService.getTripsByUser(userParam);
+
+        assertIterableEquals(userTripList, actual);
     }
 }
