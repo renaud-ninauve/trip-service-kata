@@ -10,8 +10,8 @@ import org.craftedsw.tripservicekata.user.UserTrips;
 
 public class TripService {
 
-	private final LoggedUserHolder loggedUserHolder = new LoggedUserHolder();
-	private final UserTrips userTrips = new UserTrips();
+	private LoggedUserHolder loggedUserHolder = new LoggedUserHolder();
+	private UserTrips userTrips = new UserTrips();
 
 	public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
 		List<Trip> tripList = new ArrayList<Trip>();
@@ -33,4 +33,11 @@ public class TripService {
 		}
 	}
 
+	public void setLoggedUserHolder(LoggedUserHolder loggedUserHolder) {
+		this.loggedUserHolder = loggedUserHolder;
+	}
+
+	public void setUserTrips(UserTrips userTrips) {
+		this.userTrips = userTrips;
+	}
 }
