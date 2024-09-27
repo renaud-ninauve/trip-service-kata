@@ -1,7 +1,7 @@
 package org.craftedsw.tripservicekata.user;
 
 public class LoggedUserHolder {
-    public static User getLoggedUser() {
+    public User getLoggedUser() {
         return UserSession.getInstance().getLoggedUser();
     }
 }
