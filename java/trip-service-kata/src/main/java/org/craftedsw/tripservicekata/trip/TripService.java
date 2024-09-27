@@ -9,9 +9,10 @@ import org.craftedsw.tripservicekata.user.User;
 
 public class TripService {
 
+	private final LoggedUserHolder loggedUserHolder = new LoggedUserHolder();
+
 	public List<Trip> getTripsByUser(User user) throws UserNotLoggedInException {
 		List<Trip> tripList = new ArrayList<Trip>();
-		LoggedUserHolder loggedUserHolder = new LoggedUserHolder();
 		User loggedUser = loggedUserHolder.getLoggedUser();
 		boolean isFriend = false;
 		if (loggedUser != null) {
