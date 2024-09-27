@@ -10,7 +10,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.Collections;
+import java.util.List;
+
+import static java.util.Collections.emptyList;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class TripServiceTest {
@@ -32,5 +37,14 @@ class TripServiceTest {
         assertThrows(UserNotLoggedInException.class, () -> {
             tripService.getTripsByUser(new User());
         });
+    }
+
+    @Test
+    void empty_when_no_friends() {
+        when(loggedUserHolder.getLoggedUser()).thenReturn(new User());
+
+        List<Trip> actual = tripService.getTripsByUser(new User());
+
+        assertIterableEquals(emptyList(), actual);
     }
 }
