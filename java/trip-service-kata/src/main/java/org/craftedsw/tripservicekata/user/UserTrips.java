@@ -6,7 +6,7 @@ import org.craftedsw.tripservicekata.trip.TripDAO;
 import java.util.List;
 
 public class UserTrips {
-    public static List<Trip> findTrips(User user) {
+    public List<Trip> findTrips(User user) {
         return TripDAO.findTripsByUser(user);
     }
 }

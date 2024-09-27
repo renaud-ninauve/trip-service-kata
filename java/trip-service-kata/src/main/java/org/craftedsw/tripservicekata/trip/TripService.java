@@ -24,7 +24,7 @@ public class TripService {
 				}
 			}
 			if (isFriend) {
-				tripList = UserTrips.findTrips(user);
+				tripList = new UserTrips().findTrips(user);
 			}
 			return tripList;
 		} else {
